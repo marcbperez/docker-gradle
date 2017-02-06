@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+### Added
+
+  - Sample Gradle build script.
+
 ## 0.2.0 - 2017-02-05
 
 ### Added
