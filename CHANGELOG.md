@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
-## Unreleased
+## 0.4.0 - 2017-03-19
 
 ### Added
 
@@ -14,7 +14,7 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ### Changed
 
-  - Gradle stable version to 3.4.1.
+  - Gradle stable version to 3.4.1 on Dockerfile.
   - README file with new usage instructions.
 
 ## 0.3.1 - 2017-02-12
