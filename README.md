@@ -1,26 +1,55 @@
 # docker-gradle
 
-A Docker container for building Gradle prjects.
+A Docker container for building Gradle prjects. Includes a basic Gradle build
+script and docker-compose support.
 
 ## Installation
 
-To install Docker and docker-compose (highly recommended) refer to
-the [official instructions][install-docker-compose].
-
-## Usage
-
-To start the container get the project sources, modify the Gradle build script
-and run docker-compose.
+Start by downloading and building the project when necessary. The following
+commands will do the job on most Debian based Linux distributions.
 
 ```bash
 git clone https://github.com/marcbperez/docker-gradle
 cd docker-gradle
-sudo docker-compose up
+```
+
+## Usage
+
+This project can be used as a template for Gradle builds with Docker support.
+There is a build script on `build.gradle` and a test folder for Spock cases. The
+image can also be used from another Dockerfile like in the example below.
+
+```bash
+FROM marcbperez/docker-gradle
+ADD . /home/builder
+WORKDIR /home/builder
+CMD gradle --continuous
 ```
 
 ## Testing
 
-This project has no tests yet.
+Test checks are executed automatically every time the project is built. Builds
+can be done remotely or continuously on a development context. For continuous
+integration and development use docker-compose. This is recommended to keep the
+system clean while the project is built every time the sources change.
+
+```bash
+sudo docker-compose up
+```
+
+For continuous integration and development without any dependencies use the
+Gradle wrapper. This is the best option if the wrapper is available and the
+Docker context is not valid. For a full list of tasks, see
+`sudo ./gradlew tasks --all`. For a CI cycle use `sudo ./gradlew --continuous`.
+
+For continuous integration and development without Docker or the project wrapper
+use Gradle directly. This will create the wrapper in case it is not present.
+Similar to the above, for a CI cycle use `sudo gradle --continuous`. Gradle
+3.4.1 is required for this to work. Plain Docker is also available for remote
+integration tasks and alike. Build the image with `sudo docker build .` and run
+a new container with it. Information on how to install Docker and docker-compose
+can be found in their [official page][install-docker-compose]. A similar
+installation guide is available [for Gradle][install-gradle].
 
 ## Troubleshooting
 
@@ -57,3 +86,4 @@ This project is licensed under the [Apache License Version 2.0][license].
 [license]: LICENSE
 [semver]: http://semver.org
 [install-docker-compose]: https://docs.docker.com/compose/install/
+[install-gradle]: https://gradle.org/install

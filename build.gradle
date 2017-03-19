@@ -1,7 +1,14 @@
-defaultTasks "watch", "dependencies", "build", "install", "test"
+defaultTasks "wrapper", "watch", "dependencies", "build", "install", "test"
 
+def aptPackages = ["libspock-java"]
 def path = System.getProperty("user.dir")
 def srcDir = "${path}/src"
+def testDir = "${path}/test"
+
+task wrapper(type: Wrapper) {
+  description "Creates the project wrapper."
+  gradleVersion = "3.4.1"
+}
 
 task watch(type: Exec) {
   def sourceFiles = fileTree(srcDir) {
@@ -23,6 +30,24 @@ task dependencies() {
       task.name.startsWith("dependencies") && !task.name.equals("dependencies")
     }
   }
+}
+
+task aptUpdate(type: Exec) {
+  description "Updates APT repository information."
+  workingDir path
+  commandLine "apt-get"
+  args "update"
+
+  new ByteArrayOutputStream()
+}
+
+task dependenciesApt(type: Exec, dependsOn: aptUpdate) {
+  description "Installs APT dependencies."
+  workingDir path
+  commandLine "apt-get"
+  args = ["install", "-y"] + aptPackages
+
+  new ByteArrayOutputStream()
 }
 
 task build() {
@@ -52,5 +77,18 @@ task test() {
     tasks.findAll { task ->
       task.name.startsWith("test") && !task.name.equals("test")
     }
+  }
+}
+
+fileTree(dir: "${testDir}", include: "**/*.groovy").each { File testFile ->
+  def fileName = testFile.getName().split("\\.")[0]
+
+  task "test${fileName}"(type: Exec) {
+    description "Runs the ${fileName} case."
+    workingDir path
+    commandLine "groovy"
+    args "-cp", "/usr/share/java/spock-core.jar", testFile
+
+    new ByteArrayOutputStream()
   }
 }
