@@ -5,6 +5,13 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.5.0 - 2017-11-01
+
+### Changed
+
+  - Project owner's name.
+  - Gradle version on Dockerfile to 4.10.
+
 ## 0.4.1 - 2017-10-15
 
 ### Fixed
