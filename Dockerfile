@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:cwchien/gradle
 
 # Install a minimal Java runtime, gradle and groovy.
-RUN apt-get update && apt-get install -y default-jdk gradle-3.5.1
+RUN apt-get update && apt-get install -y default-jdk gradle-4.10
 
 # Run the continuous build.
 CMD gradle --continuous
