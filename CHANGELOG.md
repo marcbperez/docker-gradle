@@ -5,6 +5,13 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.5.1 - 2017-11-23
+
+### Fixed
+
+  - Ubuntu version to latest, Gradle to 4.10.3.
+  - Project author's name.
+
 ## 0.5.0 - 2017-11-01
 
 ### Changed
