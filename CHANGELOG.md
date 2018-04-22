@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+## 0.4.1 - 2017-10-15
+
+### Fixed
+
+  - Gradle version to 3.5.1.
+  - Erratas on README file and build script.
+  - Gradle wrapper for this version.
+
 ## 0.4.0 - 2017-03-19
 
 ### Added
