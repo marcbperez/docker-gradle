@@ -15,7 +15,7 @@ task watch(type: Exec) {
     exclude "**/*.tmp"
   }
 
-  description "Watches for canges, use 'gradle --continuous'."
+  description "Watches for changes."
   inputs.files(sourceFiles)
   commandLine "true"
 

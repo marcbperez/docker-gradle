@@ -1,6 +1,6 @@
 # docker-gradle
 
-A Docker container for building Gradle prjects. Includes a basic Gradle build
+A Docker container for building Gradle projects. Includes a basic Gradle build
 script and docker-compose support.
 
 ## Installation
